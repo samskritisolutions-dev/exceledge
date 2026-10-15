@@ -54,13 +54,13 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-bg/85 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
         <div className="flex items-center gap-3">
           <Link href="/" aria-label="Excel Edge Solutions home">
-            <Logo className="h-7" />
+            <Logo className="h-9" />
           </Link>
-          <span aria-hidden className="h-7 border-l border-line" />
-          <TungstenBadge className="h-5" />
+          <span aria-hidden className="h-9 border-l border-line" />
+          <TungstenBadge className="h-6" />
         </div>
         <nav
           aria-label="Main"

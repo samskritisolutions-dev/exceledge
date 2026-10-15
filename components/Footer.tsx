@@ -24,9 +24,9 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-12 md:grid-cols-12 md:gap-8 md:py-16">
         <div className="md:col-span-4">
           <Link href="/" aria-label="Excel Edge Solutions home" className="inline-flex items-center gap-4">
-            <Image src="/brand/excel-edge-logo-white.svg" alt="Excel Edge Solutions" width={250} height={90} className="h-7 w-auto" />
-            <span aria-hidden className="h-7 border-l border-white/15" />
-            <TungstenBadge className="h-5 brightness-0 invert" />
+            <Image src="/brand/excel-edge-logo-white.svg" alt="Excel Edge Solutions" width={250} height={90} className="h-9 w-auto" />
+            <span aria-hidden className="h-9 border-l border-white/15" />
+            <TungstenBadge className="h-6 brightness-0 invert" />
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-6 text-slate-300">Intelligent automation and document management for organizations that want accuracy, speed, and scale.</p>
         </div>
