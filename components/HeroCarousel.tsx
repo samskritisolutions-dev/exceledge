@@ -18,23 +18,6 @@ import Link from "next/link";
 
 const slides = [
   {
-    eyebrow: "InvoiceAgility",
-    title: (
-      <>
-        Invoices in.
-        <br />
-        <span className="text-emerald-300">Work moving.</span>
-      </>
-    ),
-    description:
-      "Capture invoice data, validate it and simplify accounts payable with intelligent automation.",
-    link: "/products/invoiceagility",
-    linkLabel: "Explore InvoiceAgility",
-    product: "Invoice processing",
-    icon: FileCheck2,
-    accent: "from-emerald-400/25 via-teal-300/10 to-transparent",
-  },
-  {
     eyebrow: "Power PDF",
     title: (
       <>
@@ -50,6 +33,23 @@ const slides = [
     product: "PDF productivity",
     icon: FileText,
     accent: "from-violet-400/25 via-fuchsia-300/10 to-transparent",
+  },
+  {
+    eyebrow: "InvoiceAgility",
+    title: (
+      <>
+        Invoices in.
+        <br />
+        <span className="text-emerald-300">Work moving.</span>
+      </>
+    ),
+    description:
+      "Capture invoice data, validate it and simplify accounts payable with intelligent automation.",
+    link: "/products/invoiceagility",
+    linkLabel: "Explore InvoiceAgility",
+    product: "Invoice processing",
+    icon: FileCheck2,
+    accent: "from-emerald-400/25 via-teal-300/10 to-transparent",
   },
   {
     eyebrow: "TotalAgility",
@@ -75,15 +75,15 @@ const productLogos: Record<
   { name: string; src: string; width: number; height: number }
 > = {
   0: {
-    name: "InvoiceAgility",
-    src: "/brand/invoiceagility/invoiceaglity-white.png",
-    width: 769,
-    height: 163,
-  },
-  1: {
     name: "Power PDF",
     src: "/brand/power-pdf/power-pdf-whie.png",
     width: 656,
+    height: 163,
+  },
+  1: {
+    name: "InvoiceAgility",
+    src: "/brand/invoiceagility/invoiceaglity-white.png",
+    width: 769,
     height: 163,
   },
   2: {
@@ -100,9 +100,9 @@ function SolutionVisual({ slideIndex }: { slideIndex: number }) {
   const items =
     slideIndex === 2
       ? ["Capture documents", "Review & approve", "Complete workflow"]
-      : slideIndex === 1
+      : slideIndex === 0
         ? ["Edit with confidence", "Convert in seconds", "Sign securely"]
-        : slideIndex === 0
+        : slideIndex === 1
           ? ["Invoice received", "Data validated", "Ready for approval"]
           : ["Documents", "Decisions", "Workflows"];
 
