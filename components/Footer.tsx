@@ -9,24 +9,12 @@ const linkStyle = "transition-colors hover:text-blue-200";
 export function Footer() {
   return (
     <footer className="mt-12 bg-[#07142f] text-white">
-      <div className="border-b border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-10 sm:flex-row sm:items-center sm:justify-between md:py-12">
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-blue-200">Ready to move work forward?</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">Let&apos;s make automation work for you.</h2>
-          </div>
-          <Link href="/book-a-demo" className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-[#07142f] transition hover:bg-blue-100">
-            Book a demo <ArrowUpRight aria-hidden className="size-4" />
-          </Link>
-        </div>
-      </div>
-
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-12 md:grid-cols-12 md:gap-8 md:py-16">
         <div className="md:col-span-4">
           <Link href="/" aria-label="Excel Edge Solutions home" className="inline-flex items-center gap-4">
-            <Image src="/brand/excel-edge-logo-white.svg" alt="Excel Edge Solutions" width={250} height={90} className="h-9 w-auto" />
-            <span aria-hidden className="h-9 border-l border-white/15" />
-            <TungstenBadge className="h-6 brightness-0 invert" />
+            <Image src="/brand/excel-edge-logo-white.svg" alt="Excel Edge Solutions" width={250} height={90} className="h-11 w-auto" />
+            <span aria-hidden className="h-11 border-l border-white/15" />
+            <TungstenBadge className="h-7 brightness-0 invert" />
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-6 text-slate-300">Intelligent automation and document management for organizations that want accuracy, speed, and scale.</p>
         </div>

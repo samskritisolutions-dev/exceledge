@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
@@ -57,8 +58,9 @@ const terms = [
 
 export default function Page() {
   return (
-    <article className="mx-auto max-w-3xl px-6 pb-0 pt-20 md:pt-24">
-      <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Legal</p>
+    <article className="mx-auto max-w-3xl px-6 pb-0">
+      <Breadcrumbs items={[{ label: "Terms of Use" }]} />
+      <p className="mt-12 font-mono text-xs uppercase tracking-[0.18em] text-muted">Legal</p>
       <h1 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">Terms of Use</h1>
       <p className="mt-8 text-lg leading-8 text-muted">Welcome to Exceledge Solutions. By accessing or using our website, you agree to comply with and be bound by these Terms of Use. If you do not agree, please do not use this website.</p>
 

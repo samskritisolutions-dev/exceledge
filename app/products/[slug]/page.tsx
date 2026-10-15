@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, BarChart3, Check, FileCheck2, FileOutput, FileSignature, FileText, Globe, MonitorSmartphone, Scan, ShieldCheck, UsersRound, Workflow, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Shot } from "@/components/Shot";
 import { PowerPdfEditions } from "@/components/PowerPdfEditions";
+import { ProductSectionNav } from "@/components/ProductSectionNav";
 import { products, site } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -30,7 +33,8 @@ export default async function ProductPage({ params }: Props) {
   if (p.slug === "totalagility") return <TotalAgilityPage ld={ld} />;
 
   return (
-    <div className="mx-auto max-w-6xl px-6 pt-24">
+    <div className="mx-auto max-w-6xl px-6 pt-8">
+      <Breadcrumbs items={[{ label: "Products", href: "/#products" }, { label: p.name }]} />
       <p className="font-mono text-xs uppercase tracking-widest text-muted">Product</p>
       <h1 className="mt-4 text-5xl font-semibold tracking-tight md:text-6xl">{p.name}</h1>
       <p className="mt-4 text-xl">{p.tagline}</p>
@@ -67,15 +71,7 @@ function PowerPdfPage({ ld }: { ld: Record<string, unknown> }) {
   return (
     <>
       <div className="mx-auto max-w-6xl px-6 pb-16">
-        <section aria-label="Breadcrumb" className="pt-8">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-muted">
-            <Link href="/" className="transition-colors hover:text-fg">Home</Link>
-            <span aria-hidden>/</span>
-            <Link href="/#products" className="transition-colors hover:text-fg">Products</Link>
-            <span aria-hidden>/</span>
-            <span aria-current="page" className="text-fg">Power PDF</span>
-          </nav>
-        </section>
+        <Breadcrumbs items={[{ label: "Products", href: "/#products" }, { label: "Power PDF" }]} />
 
         <section className="grid items-center gap-12 py-14 md:grid-cols-2 md:gap-16 md:py-20">
           <div>
@@ -88,7 +84,7 @@ function PowerPdfPage({ ld }: { ld: Record<string, unknown> }) {
               ))}
             </ul>
             <div className="mt-9 flex flex-wrap items-center gap-6">
-              <Button href="/contact">Talk to an expert</Button>
+              <Button href="/book-a-demo">Book a demo</Button>
               <Link href="#editions" className="group inline-flex items-center gap-2 text-sm font-medium hover:text-accent">Explore editions <ArrowRight aria-hidden className="size-4 transition-transform group-hover:translate-x-1" /></Link>
             </div>
           </div>
@@ -115,7 +111,18 @@ function PowerPdfPage({ ld }: { ld: Record<string, unknown> }) {
           </div>
         </section>
 
-        <section className="grid gap-8 border-t border-line py-14 md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-16 md:py-16">
+        <div className="mt-2 grid gap-5 md:grid-cols-[150px_minmax(0,1fr)] md:items-start md:gap-8 xl:gap-12">
+        <ProductSectionNav label="Power PDF" items={[
+          { id: "overview", label: "Overview" },
+          { id: "collaboration", label: "Collaboration" },
+          { id: "benefits", label: "Benefits" },
+          { id: "industries", label: "Industries" },
+          { id: "editions", label: "Editions" },
+          { id: "faqs", label: "FAQs" },
+          { id: "get-started", label: "Get started" },
+        ]} />
+        <div aria-label="Power PDF page content" className="min-w-0">
+        <section id="overview" className="scroll-mt-24 grid gap-8 border-t border-line py-14 md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-16 md:py-16">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Overview</p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">Work smarter with a powerful PDF solution.</h2>
@@ -125,11 +132,11 @@ function PowerPdfPage({ ld }: { ld: Record<string, unknown> }) {
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-blue-200">A practical alternative</p>
             <p className="mt-4 text-2xl font-semibold tracking-tight">More value from your PDF investment.</p>
             <p className="mt-3 text-sm leading-6 text-slate-300">The Power PDF product page highlights potential savings of up to 60% compared with Adobe pricing. Ask us to help compare the right edition for your team.</p>
-            <Link href="/contact" className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-white underline decoration-white/30 underline-offset-4 hover:decoration-white">Compare editions <ArrowRight aria-hidden className="size-4" /></Link>
+            <Link href="/book-a-demo" className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-white underline decoration-white/30 underline-offset-4 hover:decoration-white">Book a demo <ArrowRight aria-hidden className="size-4" /></Link>
           </div>
         </section>
 
-        <section className="grid gap-8 border-t border-line py-14 md:grid-cols-2 md:items-center md:gap-16 md:py-16">
+        <section id="collaboration" className="scroll-mt-24 grid gap-8 border-t border-line py-14 md:grid-cols-2 md:items-center md:gap-16 md:py-16">
           <div className="order-2 rounded-2xl border border-line bg-white p-7 md:order-1 md:p-9">
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Power PDF Business</p>
             <div className="mt-6 flex items-center gap-4"><span className="grid size-12 place-items-center rounded-xl bg-blue-50 text-accent"><Workflow className="size-6" /></span><span className="text-lg font-semibold">Stay aligned, wherever work happens.</span></div>
@@ -142,7 +149,7 @@ function PowerPdfPage({ ld }: { ld: Record<string, unknown> }) {
           </div>
         </section>
 
-        <section className="border-t border-line py-14 md:py-16">
+        <section id="benefits" className="scroll-mt-24 border-t border-line py-14 md:py-16">
           <div className="max-w-2xl">
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Benefits</p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">Tools for the way you work with PDFs.</h2>
@@ -158,7 +165,7 @@ function PowerPdfPage({ ld }: { ld: Record<string, unknown> }) {
           </div>
         </section>
 
-        <section className="border-t border-line py-14 md:py-16">
+        <section id="industries" className="scroll-mt-24 border-t border-line py-14 md:py-16">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Industries</p>
           <div className="mt-4 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <h2 className="max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">PDF work across industries.</h2>
@@ -171,17 +178,19 @@ function PowerPdfPage({ ld }: { ld: Record<string, unknown> }) {
 
         <PowerPdfEditions />
 
-        <section className="border-t border-line py-14 md:py-16">
+        <section id="faqs" className="scroll-mt-24 border-t border-line py-14 md:py-16">
           <div className="max-w-2xl"><p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">FAQs</p><h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">A few common questions.</h2></div>
           <div className="mt-7 divide-y divide-line border-y border-line">
             {questions.map(({ question, answer }) => <details key={question} className="group py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-medium [&::-webkit-details-marker]:hidden">{question}<span className="text-xl text-accent transition-transform group-open:rotate-45">+</span></summary><p className="mt-3 max-w-3xl text-sm leading-6 text-muted">{answer}</p></details>)}
           </div>
         </section>
 
-        <section className="rounded-2xl bg-[#07142f] px-7 py-10 text-white sm:px-10 md:flex md:items-center md:justify-between md:gap-8 md:px-12 md:py-12">
+        <section id="get-started" className="scroll-mt-24 rounded-2xl bg-[#07142f] px-7 py-10 text-white sm:px-10 md:flex md:items-center md:justify-between md:gap-8 md:px-12 md:py-12">
           <div><p className="font-mono text-xs uppercase tracking-[0.18em] text-blue-200">Power PDF</p><h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">Make PDF work easier for your team.</h2><p className="mt-3 max-w-xl text-sm leading-6 text-slate-300">Talk with Excel Edge Solutions about bringing Power PDF into your document workflows.</p></div>
           <div className="mt-6 shrink-0 md:mt-0"><Link href="/book-a-demo" className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-[#07142f] transition hover:bg-blue-100">Book a demo <ArrowRight aria-hidden className="size-4" /></Link></div>
         </section>
+        </div>
+        </div>
       </div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
     </>
@@ -228,15 +237,7 @@ function InvoiceAgilityPage({ ld }: { ld: Record<string, unknown> }) {
   return (
     <>
       <div className="mx-auto max-w-6xl px-6 pb-16">
-        <section className="pt-8">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-muted">
-            <Link href="/" className="transition-colors hover:text-fg">Home</Link>
-            <span aria-hidden>/</span>
-            <Link href="/#products" className="transition-colors hover:text-fg">Products</Link>
-            <span aria-hidden>/</span>
-            <span aria-current="page" className="text-fg">InvoiceAgility+</span>
-          </nav>
-        </section>
+        <Breadcrumbs items={[{ label: "Products", href: "/#products" }, { label: "InvoiceAgility+" }]} />
 
         <section className="grid items-center gap-12 py-14 md:grid-cols-2 md:gap-16 md:py-20">
           <div>
@@ -245,7 +246,6 @@ function InvoiceAgilityPage({ ld }: { ld: Record<string, unknown> }) {
             <p className="mt-6 max-w-xl text-lg leading-8 text-muted">Automate invoice-to-pay with AI that captures, matches, codes, and reconciles invoices from receipt through payment, with global compliance and supplier connectivity.</p>
             <div className="mt-9 flex flex-wrap items-center gap-6">
               <Button href="/book-a-demo">Book a demo</Button>
-              <Link href="/contact" className="group inline-flex items-center gap-2 text-sm font-medium hover:text-accent">Talk to a specialist <ArrowRight aria-hidden className="size-4 transition-transform group-hover:translate-x-1" /></Link>
             </div>
           </div>
           <div aria-label="Invoice processing illustration" className="relative grid min-h-[340px] place-items-center overflow-hidden rounded-2xl border border-line bg-[#f3f6fc] p-6 sm:p-9 md:min-h-[420px]">
@@ -261,56 +261,87 @@ function InvoiceAgilityPage({ ld }: { ld: Record<string, unknown> }) {
           </div>
         </section>
 
-        <section className="border-t border-line py-14 md:py-16">
+        <div className="mt-2 grid gap-5 md:grid-cols-[150px_minmax(0,1fr)] md:items-start md:gap-8 xl:gap-12">
+        <ProductSectionNav label="InvoiceAgility+" items={[
+          { id: "invoice-overview", label: "Overview" },
+          { id: "invoice-experience", label: "Experience" },
+          { id: "invoice-tools", label: "AI tools" },
+          { id: "invoice-how-it-works", label: "How it works" },
+          { id: "invoice-operations", label: "Operations" },
+          { id: "invoice-faqs", label: "FAQs" },
+          { id: "invoice-get-started", label: "Get started" },
+        ]} />
+        <div className="min-w-0">
+        <section id="invoice-overview" className="scroll-mt-36 border-t border-line py-14 md:scroll-mt-24 md:py-16">
           <div className="max-w-2xl"><p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Overview</p><h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">Smarter invoicing. Faster finance.</h2><p className="mt-5 leading-7 text-muted">Paper, PDFs, email, and different compliance rules can make invoice processing difficult to manage. InvoiceAgility+ brings AP and AR workflows together so finance teams can focus less on repetitive tasks and more on higher-value work.</p></div>
           <div className="mt-9 grid gap-4 md:grid-cols-3">
             {pillars.map(({ title, description, icon: Icon }) => <article key={title} className="rounded-2xl border border-line p-6"><span className="grid size-11 place-items-center rounded-xl bg-blue-50 text-accent"><Icon aria-hidden className="size-5" /></span><h3 className="mt-5 text-lg font-semibold">{title}</h3><p className="mt-3 text-sm leading-6 text-muted">{description}</p></article>)}
           </div>
         </section>
 
-        <section className="border-t border-line py-14 md:py-16">
+        <section id="invoice-experience" className="scroll-mt-36 border-t border-line py-14 md:scroll-mt-24 md:py-16">
           <div className="max-w-2xl"><p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">A focused experience</p><h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">The right information for every finance role.</h2><p className="mt-4 leading-7 text-muted">Keep daily work, key insights, and required actions together instead of switching between disconnected tools and reports.</p></div>
           <div className="mt-8 grid gap-4 md:grid-cols-3">{views.map(({ title, description }, index) => <article key={title} className="rounded-xl border border-line p-5"><span className="font-mono text-xs text-accent">0{index + 1}</span><h3 className="mt-4 font-semibold">{title}</h3><p className="mt-2 text-sm leading-6 text-muted">{description}</p></article>)}</div>
         </section>
 
-        <section className="border-t border-line py-14 md:py-16">
+        <section id="invoice-tools" className="scroll-mt-36 border-t border-line py-14 md:scroll-mt-24 md:py-16">
           <div className="max-w-2xl"><p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">AI-powered finance tools</p><h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">Automation for every step of invoice processing.</h2><p className="mt-4 leading-7 text-muted">InvoiceAgility+ combines purpose-built AI tools with human review for exceptions and specialized tasks.</p></div>
           <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {aiTools.map(({ title, description, icon: Icon }) => <article key={title} className="rounded-xl bg-[#f3f6fc] p-5"><Icon aria-hidden className="size-5 text-accent" /><h3 className="mt-4 font-semibold">{title}</h3><p className="mt-2 text-sm leading-6 text-muted">{description}</p></article>)}
           </div>
-          <div className="mt-5 grid gap-4 rounded-2xl border border-line p-6 md:grid-cols-2 md:items-center md:p-7">
-            <div><p className="font-mono text-xs uppercase tracking-[0.16em] text-muted">Connected operations</p><h3 className="mt-2 text-lg font-semibold">Connect systems and suppliers.</h3><p className="mt-2 text-sm leading-6 text-muted">The Tungsten Connectivity Hub links invoice workflows with ERP and e-invoicing networks. Supplier+ adds a shared portal for invoice transparency, payment visibility, and supplier inquiries.</p></div>
-            <div className="flex flex-wrap gap-2 md:justify-end">{["SAP", "Oracle", "D365", "Coupa", "Peppol", "Any ERP"].map((system) => <span key={system} className="rounded-full border border-line px-3 py-1.5 text-xs font-medium text-muted">{system}</span>)}</div>
+          <div className="mt-5 grid gap-7 rounded-2xl border border-line bg-[#f8faff] p-5 sm:p-7 md:grid-cols-[0.85fr_1.15fr] md:items-center md:gap-10">
+            <div className="md:py-2">
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">Connected operations</p>
+              <h3 className="mt-3 text-xl font-semibold tracking-tight">Connect systems and suppliers.</h3>
+              <p className="mt-3 max-w-md text-sm leading-6 text-muted">The Tungsten Connectivity Hub links invoice workflows with ERP and e-invoicing networks. Supplier+ adds a shared portal for invoice transparency, payment visibility, and supplier inquiries.</p>
+            </div>
+            <div aria-label="InvoiceAgility+ connected systems and networks" className="rounded-xl border border-[#dfe8f2] bg-white p-4 shadow-[0_8px_24px_rgba(12,39,78,0.05)] sm:p-5">
+              <div className="flex items-center justify-between gap-3">
+                <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">One connected hub</span>
+                <span className="flex items-center gap-1.5 text-[10px] font-medium text-emerald-700"><span className="size-1.5 rounded-full bg-emerald-500" />Ready to connect</span>
+              </div>
+              <div className="mt-4 flex items-center gap-3 rounded-lg bg-[#071b43] px-4 py-3 text-white">
+                <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-white/10 text-xs font-bold">IA+</span>
+                <div><p className="text-sm font-semibold">InvoiceAgility+</p><p className="mt-0.5 text-[10px] text-white/65">Invoice workflow hub</p></div>
+                <span className="ml-auto rounded-full bg-white/10 px-2.5 py-1 text-[10px] text-white/80">Connected</span>
+              </div>
+              <div className="my-3 flex items-center gap-2 px-1" aria-hidden="true"><span className="h-px flex-1 bg-gradient-to-r from-transparent via-sky-300 to-sky-300" /><span className="size-1.5 rounded-full bg-sky-400" /><span className="h-px flex-1 bg-gradient-to-l from-transparent via-sky-300 to-sky-300" /></div>
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                {["SAP", "Oracle", "Dynamics 365", "Coupa", "Peppol", "Supplier+"].map((system) => <div key={system} className="flex min-h-10 items-center gap-2 rounded-lg border border-[#e7edf4] bg-[#fbfcfe] px-3 py-2 text-xs font-medium text-[#263b5a]"><span className="size-1.5 rounded-full bg-sky-500" />{system}</div>)}
+              </div>
+            </div>
           </div>
         </section>
 
-        <section className="border-t border-line py-14 md:py-16">
+        <section id="invoice-how-it-works" className="scroll-mt-36 border-t border-line py-14 md:scroll-mt-24 md:py-16">
           <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
-            <div><p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">How it works</p><h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">From invoice to insight.</h2><p className="mt-5 leading-7 text-muted">Automate the invoice lifecycle, connect workflows, and give finance teams clearer information for decisions.</p></div>
+            <div className="md:sticky md:top-28 md:self-start"><p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">How it works</p><h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">From invoice to insight.</h2><p className="mt-5 leading-7 text-muted">Automate the invoice lifecycle, connect workflows, and give finance teams clearer information for decisions.</p></div>
             <ol className="divide-y divide-line border-y border-line">
               {stages.map(({ title, description, icon: Icon }, index) => <li key={title} className="flex gap-4 py-5"><span className="mt-0.5 grid size-10 shrink-0 place-items-center rounded-xl bg-blue-50 text-accent"><Icon aria-hidden className="size-5" /></span><div><div className="flex items-baseline gap-3"><span className="font-mono text-xs text-muted">0{index + 1}</span><h3 className="font-semibold">{title}</h3></div><p className="mt-2 text-sm leading-6 text-muted">{description}</p></div></li>)}
             </ol>
           </div>
         </section>
 
-        <section className="border-t border-line py-14 md:py-16">
+        <section id="invoice-operations" className="scroll-mt-36 border-t border-line py-14 md:scroll-mt-24 md:py-16">
           <div className="max-w-2xl"><p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Operations</p><h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">Streamline work across your organization.</h2><p className="mt-4 leading-7 text-muted">Connect people, teams, systems, and invoice processes, whatever ERP your organization uses.</p></div>
           <div className="mt-9 grid gap-4 md:grid-cols-3">
             {operations.map(({ title, description, icon: Icon }) => <article key={title} className="rounded-xl bg-[#f3f6fc] p-6"><Icon aria-hidden className="size-6 text-accent" /><h3 className="mt-5 font-semibold">{title}</h3><p className="mt-2 text-sm leading-6 text-muted">{description}</p></article>)}
           </div>
         </section>
 
-        <section className="border-t border-line py-14 md:py-16">
+        <section id="invoice-faqs" className="scroll-mt-36 border-t border-line py-14 md:scroll-mt-24 md:py-16">
           <div className="max-w-2xl"><p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">FAQs</p><h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">Common questions about invoice automation.</h2></div>
           <div className="mt-7 divide-y divide-line border-y border-line">
             {questions.map(({ question, answer }) => <details key={question} className="group py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-medium [&::-webkit-details-marker]:hidden">{question}<span className="text-xl text-accent transition-transform group-open:rotate-45">+</span></summary><p className="mt-3 max-w-3xl text-sm leading-6 text-muted">{answer}</p></details>)}
           </div>
         </section>
 
-        <section className="rounded-2xl bg-[#07142f] px-7 py-10 text-white sm:px-10 md:flex md:items-center md:justify-between md:gap-8 md:px-12 md:py-12">
+        <section id="invoice-get-started" className="scroll-mt-36 rounded-2xl bg-[#07142f] px-7 py-10 text-white sm:px-10 md:scroll-mt-24 md:flex md:items-center md:justify-between md:gap-8 md:px-12 md:py-12">
           <div><p className="font-mono text-xs uppercase tracking-[0.18em] text-blue-200">InvoiceAgility+</p><h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">Make invoice processing easier to manage.</h2><p className="mt-3 max-w-xl text-sm leading-6 text-slate-300">Talk with Excel Edge Solutions about AP automation and e-invoicing for your business.</p></div>
           <div className="mt-6 shrink-0 md:mt-0"><Link href="/book-a-demo" className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-[#07142f] transition hover:bg-blue-100">Book a demo <ArrowRight aria-hidden className="size-4" /></Link></div>
         </section>
+        </div>
+        </div>
       </div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
     </>
@@ -340,15 +371,7 @@ function TotalAgilityPage({ ld }: { ld: Record<string, unknown> }) {
   return (
     <>
       <div className="mx-auto max-w-6xl px-6 pb-16">
-        <section className="pt-8">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-muted">
-            <Link href="/" className="transition-colors hover:text-fg">Home</Link>
-            <span aria-hidden>/</span>
-            <Link href="/#products" className="transition-colors hover:text-fg">Products</Link>
-            <span aria-hidden>/</span>
-            <span aria-current="page" className="text-fg">TotalAgility</span>
-          </nav>
-        </section>
+        <Breadcrumbs items={[{ label: "Products", href: "/#products" }, { label: "TotalAgility" }]} />
 
         <section className="grid items-center gap-12 py-14 md:grid-cols-2 md:gap-16 md:py-20">
           <div>
@@ -357,7 +380,6 @@ function TotalAgilityPage({ ld }: { ld: Record<string, unknown> }) {
             <p className="mt-6 max-w-xl text-lg leading-8 text-muted">Transform operations with AI-driven workflows, smart document processing, and real-time insights that help your business move faster and make informed decisions.</p>
             <div className="mt-9 flex flex-wrap items-center gap-6">
               <Button href="/book-a-demo">Book a demo</Button>
-              <Link href="/contact" className="group inline-flex items-center gap-2 text-sm font-medium hover:text-accent">Talk to a specialist <ArrowRight aria-hidden className="size-4 transition-transform group-hover:translate-x-1" /></Link>
             </div>
           </div>
           <div aria-label="Document automation workflow illustration" className="relative grid min-h-[340px] place-items-center overflow-hidden rounded-2xl border border-line bg-[#f3f6fc] p-6 sm:p-9 md:min-h-[420px]">
@@ -373,48 +395,63 @@ function TotalAgilityPage({ ld }: { ld: Record<string, unknown> }) {
           </div>
         </section>
 
-        <section className="grid gap-8 border-t border-line py-14 md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-16 md:py-16">
+        <div className="mt-2 grid gap-5 md:grid-cols-[150px_minmax(0,1fr)] md:items-start md:gap-8 xl:gap-12">
+        <ProductSectionNav label="TotalAgility" items={[
+          { id: "total-overview", label: "Overview" },
+          { id: "total-benefits", label: "Benefits" },
+          { id: "total-how-it-works", label: "How it works" },
+          { id: "total-industries", label: "Industries" },
+          { id: "total-recognition", label: "Recognition" },
+          { id: "total-faqs", label: "FAQs" },
+          { id: "total-get-started", label: "Get started" },
+        ]} />
+        <div className="min-w-0">
+        <section id="total-overview" className="scroll-mt-36 grid gap-8 border-t border-line py-14 md:scroll-mt-24 md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-16 md:py-16">
           <div><p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Overview</p><h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">Simplify. Automate. Accelerate.</h2><p className="mt-5 leading-7 text-muted">Enterprises handle growing amounts of real-time and archived content, while many systems solve only part of the challenge. TotalAgility brings document processing, workflow orchestration, and AI together to turn scattered information into useful insight and action.</p></div>
           <div className="rounded-2xl bg-[#07142f] p-7 text-white md:p-9"><p className="font-mono text-xs uppercase tracking-[0.18em] text-blue-200">One connected platform</p><p className="mt-4 text-2xl font-semibold tracking-tight">From document to decision.</p><p className="mt-3 text-sm leading-6 text-slate-300">Bring information, people, processes, and AI together so teams can focus on meaningful work.</p><div className="mt-6 flex flex-wrap gap-2 text-xs text-slate-200"><span className="rounded-full border border-white/15 px-3 py-1.5">Intelligent document processing</span><span className="rounded-full border border-white/15 px-3 py-1.5">Process orchestration</span><span className="rounded-full border border-white/15 px-3 py-1.5">AI insights</span></div></div>
         </section>
 
-        <section className="border-t border-line py-14 md:py-16">
+        <section id="total-benefits" className="scroll-mt-36 border-t border-line py-14 md:scroll-mt-24 md:py-16">
           <div className="max-w-2xl"><p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Benefits</p><h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">Make complex work easier to move forward.</h2></div>
           <div className="mt-9 grid gap-4 sm:grid-cols-2">
             {benefits.map(({ title, description, icon: Icon }) => <article key={title} className="rounded-2xl border border-line p-6"><span className="grid size-11 place-items-center rounded-xl bg-blue-50 text-accent"><Icon aria-hidden className="size-5" /></span><h3 className="mt-5 text-lg font-semibold">{title}</h3><p className="mt-3 text-sm leading-6 text-muted">{description}</p></article>)}
           </div>
         </section>
 
-        <section className="grid gap-8 border-t border-line py-14 md:grid-cols-[0.8fr_1.2fr] md:gap-16 md:py-16">
-          <div><p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">How it works</p><h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">Move from documents to decisions.</h2><p className="mt-5 leading-7 text-muted">Transform information, orchestrate work, discover insight, and advance outcomes across the enterprise.</p></div>
+        <section id="total-how-it-works" className="scroll-mt-36 grid gap-8 border-t border-line py-14 md:scroll-mt-24 md:grid-cols-[0.8fr_1.2fr] md:gap-16 md:py-16">
+          <div className="md:sticky md:top-28 md:self-start"><p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">How it works</p><h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">Move from documents to decisions.</h2><p className="mt-5 leading-7 text-muted">Transform information, orchestrate work, discover insight, and advance outcomes across the enterprise.</p></div>
           <ol className="divide-y divide-line border-y border-line">
             {stages.map(({ title, description, icon: Icon }, index) => <li key={title} className="flex gap-4 py-5"><span className="mt-0.5 grid size-10 shrink-0 place-items-center rounded-xl bg-blue-50 text-accent"><Icon aria-hidden className="size-5" /></span><div><div className="flex items-baseline gap-3"><span className="font-mono text-xs text-muted">0{index + 1}</span><h3 className="font-semibold">{title}</h3></div><p className="mt-2 text-sm leading-6 text-muted">{description}</p></div></li>)}
           </ol>
         </section>
 
-        <section className="border-t border-line py-14 md:py-16">
+        <section id="total-industries" className="scroll-mt-36 border-t border-line py-14 md:scroll-mt-24 md:py-16">
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between"><div><p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Industries</p><h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">Automation for document-heavy work.</h2></div><p className="max-w-md text-sm leading-6 text-muted">Adapt workflows to your systems and deployment needs, including public cloud, private cloud, and on-premises environments.</p></div>
           <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{["Banking & finance", "Supply chain", "Public sector", "Insurance", "Healthcare"].map((industry) => <li key={industry} className="rounded-xl border border-line px-4 py-5 text-center text-sm font-medium">{industry}</li>)}</ul>
         </section>
 
-        <section className="border-t border-line py-14 md:py-16">
+        <section id="total-recognition" className="scroll-mt-36 border-t border-line py-14 md:scroll-mt-24 md:py-16">
           <div className="grid gap-6 rounded-2xl border border-line bg-[#f3f6fc] p-7 md:grid-cols-[1fr_auto] md:items-center md:p-9">
             <div><p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">Analyst recognition · 2026</p><h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">Recognized as a Leader in intelligent document processing.</h2><p className="mt-3 max-w-2xl text-sm leading-6 text-muted">Tungsten Automation reports Leader recognition in the 2026 Gartner Magic Quadrant for Intelligent Document Processing, for the second year running.</p></div>
-            <span className="grid size-24 place-items-center rounded-full border border-accent/20 bg-white text-center font-mono text-xs uppercase tracking-widest text-accent">Gartner<br />2026</span>
+            <div className="mx-auto w-fit overflow-hidden rounded-xl border border-line bg-white md:mx-0">
+              <Image src="/brand/2026-gartner-magic-quadrant-idp.png" alt="2026 Gartner Magic Quadrant for Intelligent Document Processing Solutions" width={2893} height={3200} sizes="(min-width: 768px) 256px, 224px" className="block h-auto w-56 md:w-64" />
+            </div>
           </div>
         </section>
 
-        <section className="border-t border-line py-14 md:py-16">
+        <section id="total-faqs" className="scroll-mt-36 border-t border-line py-14 md:scroll-mt-24 md:py-16">
           <div className="max-w-2xl"><p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">FAQs</p><h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">Common questions about TotalAgility.</h2></div>
           <div className="mt-7 divide-y divide-line border-y border-line">
             {questions.map(({ question, answer }) => <details key={question} className="group py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-medium [&::-webkit-details-marker]:hidden">{question}<span className="text-xl text-accent transition-transform group-open:rotate-45">+</span></summary><p className="mt-3 max-w-3xl text-sm leading-6 text-muted">{answer}</p></details>)}
           </div>
         </section>
 
-        <section className="rounded-2xl bg-[#07142f] px-7 py-10 text-white sm:px-10 md:flex md:items-center md:justify-between md:gap-8 md:px-12 md:py-12">
+        <section id="total-get-started" className="scroll-mt-36 rounded-2xl bg-[#07142f] px-7 py-10 text-white sm:px-10 md:scroll-mt-24 md:flex md:items-center md:justify-between md:gap-8 md:px-12 md:py-12">
           <div><p className="font-mono text-xs uppercase tracking-[0.18em] text-blue-200">TotalAgility</p><h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">Ready to automate document-driven work?</h2><p className="mt-3 max-w-xl text-sm leading-6 text-slate-300">Talk with Excel Edge Solutions about bringing intelligent automation to your processes.</p></div>
           <div className="mt-6 shrink-0 md:mt-0"><Link href="/book-a-demo" className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-[#07142f] transition hover:bg-blue-100">Book a demo <ArrowRight aria-hidden className="size-4" /></Link></div>
         </section>
+        </div>
+        </div>
       </div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
     </>

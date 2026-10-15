@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Lightbulb, Scaling, ShieldCheck } from "lucide-react";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "About",
@@ -36,14 +37,7 @@ const advantages = [
 export default function About() {
   return (
     <div className="mx-auto max-w-6xl px-6 pb-0">
-      <section aria-labelledby="about-page-title" className="pt-8">
-        <h1 id="about-page-title" className="text-3xl font-semibold tracking-tight">About</h1>
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 pt-3 text-sm text-muted">
-          <Link href="/" className="transition-colors hover:text-fg">Home</Link>
-          <span aria-hidden className="text-line">/</span>
-          <span aria-current="page" className="text-fg">About</span>
-        </nav>
-      </section>
+      <Breadcrumbs items={[{ label: "About" }]} />
 
       <section className="grid gap-10 border-b border-line pb-16 pt-16 md:grid-cols-[1.1fr_0.9fr] md:items-end md:gap-16 md:pb-20 md:pt-20">
         <div>

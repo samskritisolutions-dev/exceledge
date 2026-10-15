@@ -3,7 +3,9 @@ import { z } from "zod";
 
 const schema = z.object({
   name: z.string().min(2), email: z.string().email(),
-  company: z.string().optional(), message: z.string().min(10),
+  company: z.string().optional(),
+  product: z.enum(["Power PDF", "InvoiceAgility+", "TotalAgility"]),
+  message: z.string().min(10),
 });
 export type State = { ok: boolean; error?: string } | null;
 
@@ -19,7 +21,8 @@ export async function sendContact(_: State, fd: FormData): Promise<State> {
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
     body: JSON.stringify({
       from: process.env.CONTACT_FROM, to: [process.env.CONTACT_TO], reply_to: d.email,
-      subject: `New enquiry from ${d.name}`, text: `${d.name} (${d.email})\n${d.company ?? ""}\n\n${d.message}`,
+      subject: `New ${d.product} demo request from ${d.name}`,
+      text: `${d.name} (${d.email})\nCompany: ${d.company ?? ""}\nProduct: ${d.product}\n\n${d.message}`,
     }),
   });
   return res.ok ? { ok: true } : { ok: false, error: "Something went wrong. Please email us directly." };

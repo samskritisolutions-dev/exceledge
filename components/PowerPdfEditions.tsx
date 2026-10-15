@@ -79,7 +79,7 @@ export function PowerPdfEditions() {
             <ul className="mt-5 flex-1 space-y-2.5 text-sm text-muted">
               {edition.points.map((point) => <li key={point} className="flex gap-2"><Check aria-hidden className="mt-0.5 size-4 shrink-0 text-accent" />{point}</li>)}
             </ul>
-            <Link href="/contact" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent">Ask about this edition <ArrowRight aria-hidden className="size-4" /></Link>
+            <Link href="/book-a-demo" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent">Book a demo <ArrowRight aria-hidden className="size-4" /></Link>
           </article>
         ))}
       </div>

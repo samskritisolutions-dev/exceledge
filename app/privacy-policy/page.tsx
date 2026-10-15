@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -82,8 +83,9 @@ const policies = [
 
 export default function Page() {
   return (
-    <article className="mx-auto max-w-3xl px-6 pb-0 pt-20 md:pt-24">
-      <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Legal</p>
+    <article className="mx-auto max-w-3xl px-6 pb-0">
+      <Breadcrumbs items={[{ label: "Privacy Policy" }]} />
+      <p className="mt-12 font-mono text-xs uppercase tracking-[0.18em] text-muted">Legal</p>
       <h1 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">Privacy Policy</h1>
       <p className="mt-5 text-sm text-muted"><strong className="font-medium text-fg">Effective Date:</strong> 01 April 2026</p>
       <p className="mt-8 text-lg leading-8 text-muted">At <strong className="font-semibold text-fg">Exceledge Solutions</strong> (“we”, “our”, “us”), we are committed to protecting your privacy and ensuring transparency in how we collect and use your information.</p>

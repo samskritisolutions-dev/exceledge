@@ -57,10 +57,10 @@ export function Header() {
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
         <div className="flex items-center gap-3">
           <Link href="/" aria-label="Excel Edge Solutions home">
-            <Logo className="h-9" />
+            <Logo className="h-11" />
           </Link>
-          <span aria-hidden className="h-9 border-l border-line" />
-          <TungstenBadge className="h-6" />
+          <span aria-hidden className="h-11 border-l border-line" />
+          <TungstenBadge className="h-7" />
         </div>
         <nav
           aria-label="Main"
